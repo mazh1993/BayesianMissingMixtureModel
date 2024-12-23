@@ -106,6 +106,7 @@ NigCode <- nimbleCode({
     betax[j] ~ dnorm(0, 0.1)
     gammax0[j] <- delta_g1[j] * (clu[j] == 1) + delta_g2[j] * (clu[j] == 2) + delta_g3[j] * (clu[j] == 3)
     delta_g1[j] ~ T(dnorm(mu_g1, tau_g1),,0)
+    delta_g2[j] <- 0
     delta_g3[j] ~ T(dnorm(mu_g3, tau_g3),0,)
     clu[j] ~ dcat(pclu[1:3])
   }
