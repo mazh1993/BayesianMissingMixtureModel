@@ -121,8 +121,8 @@ NigCode <- nimbleCode({
   tau_g1 ~ dgamma(0.1,0.1)
   tau_g3 ~ dgamma(0.1,0.1)
   
-  sigma_wy ~ dgamma(1, 1)
-  sigma_wr ~ dgamma(1, 1)
+  sigma_wy ~ dgamma(0.1, .1)
+  sigma_wr ~ dgamma(0.1, 0.1)
   
   xm_s ~ T(dnorm(1, 0.1),0,)
 })
@@ -170,7 +170,7 @@ R <- (is.na(DATA[[k]]$x)+0)   # kth replicate
     cNigmcmc <- compileNimble(Nigmcmc, project = Nig)
     cNig$setInits(NigInits)
     mcmc.out <- runMCMC(cNigmcmc, niter = 150000, setSeed = 123, thin = 15)
-    pos_mcmc <- as.mcmc(mcmc.out[-c(1:4000),])
+    pos_mcmc <- as.mcmc(mcmc.out[-c(1:3000),])
 
 
 
